@@ -43,7 +43,8 @@ class MasaHarina:
 		'tin': 0,
 		'vanadium': 0,
 		'lycopene': 0,
-		'choline': 8.6
+		'choline': 8.6,
+                'sodium': 0
 	}
 	info = {
 		'name': 'Masa Harina',
@@ -119,7 +120,8 @@ class SoyFlour:
 		'tin': 0,
 		'vanadium': 0,
 		'lycopene': 0,
-		'choline': 11.9
+		'choline': 11.9,
+                'sodium': 0
 	}
 	info = {
 		'name': 'Soy Flour',
@@ -195,7 +197,8 @@ class OatFlour:
 		'tin': 0,
 		'vanadium': 0,
 		'lycopene': 0,
-		'choline': 29.9
+		'choline': 29.9,
+                'sodium': 0
 	}
 	info = {
 		'name': 'Oat Flour',
@@ -271,7 +274,8 @@ class Dextrose:
 		'tin': 0,
 		'vanadium': 0,
 		'lycopene': 0,
-		'choline': 0
+		'choline': 0,
+                'sodium': 0
 	}
 	info = {
 		'name': 'Dextrose',
@@ -347,7 +351,8 @@ class Maltodextrin:
 		'tin': 0,
 		'vanadium': 0,
 		'lycopene': 0,
-		'choline': 0
+		'choline': 0,
+                'sodium': 0
 	}
 	info = {
 		'name': 'Maltodextrin',
@@ -423,7 +428,8 @@ class PotatoStarch:
 		'tin': 0,
 		'vanadium': 0,
 		'lycopene': 0,
-		'choline': 0
+		'choline': 0,
+                'sodium': 0
 	}
 	info = {
 		'name': 'Potato Starch',
@@ -432,6 +438,83 @@ class PotatoStarch:
 		'price': 70.99,
 		'source': 'amazon',
 		'link': 'http://amzn.com/B0098QBMIG'
+	}
+
+	def __init__(self, x):
+		self.x = x
+		for key in self.nutrition:
+			self.nutrition[key] *= x/100
+
+	def getNutrition(self):
+		return self.nutrition
+
+	def getInfo(self):
+		return self.info
+
+	def getPrice(self):
+		return (self.x / self.info['size']) * self.info['price']
+
+	def getName(self):
+		return self.info['name']
+
+	def getUnit(self):
+		return self.info['unit']
+
+class CornStarch:
+	nutrition = {
+		'calories': 381,
+		'carbs': 91.3,
+		'fiber': 0.9,
+		'protein': 0.3,
+		'total_fat': 0.1,
+		'saturated_fat': 0,
+		'monounsaturated_fat': 0,
+		'polyunsaturated_fat': 0,
+		'omega_3': 0,
+		'omega_6': 25,
+		'cholesterol': 0,
+		'vitamin a': 0,
+		'vitamin c': 0,
+		'vitamin d': 0,
+		'vitamin e': 0,
+		'vitamin k': 0,
+		'thiamin': 0,
+		'riboflavin': 0,
+		'niacin': 0,
+		'vitamin b6': 0,
+		'folic acid': 0,
+		'vitamin b12': 0,
+		'biotin': 0,
+		'pantothenic acid': 0,
+		'calcium': 2,
+		'iron': 0.5,
+		'phosphorus': 13,
+		'iodine': 0,
+		'magnesium': 3,
+		'zinc': 0.1,
+		'selenium': 2.8,
+		'copper': 0.1,
+		'manganese': 0.1,
+		'chromium': 0,
+		'molybdenum': 0,
+		'chloride': 0,
+		'potassium': 3,
+		'boron': 0,
+		'nickel': 0,
+		'silicon': 0,
+		'tin': 0,
+		'vanadium': 0,
+		'lycopene': 0,
+		'choline': 0.4,
+		'sodium': 9
+	}
+	info = {
+		'name': 'Corn Starch',
+		'unit': 'g',
+		'size': 22680,
+		'price': 53.99,
+		'source': 'amazon',
+		'link': 'http://amzn.com/B0098Q1LSM'
 	}
 
 	def __init__(self, x):

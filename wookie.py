@@ -10,7 +10,8 @@ stat = {'calories': 0, 'carbs': 0, 'fiber': 0, 'protein': 0, 'total_fat': 0,
 	'calcium': 0, 'iron': 0, 'phosphorus': 0, 'iodine': 0, 'magnesium': 0,
 	'zinc': 0, 'selenium': 0, 'copper': 0, 'manganese': 0, 'chromium': 0,
 	'molybdenum': 0, 'chloride': 0, 'potassium': 0, 'boron': 0, 'nickel': 0,
-	'silicon': 0, 'tin': 0, 'vanadium': 0, 'lycopene': 0, 'choline': 0}
+	'silicon': 0, 'tin': 0, 'vanadium': 0, 'lycopene': 0, 'choline': 0,
+	'sodium': 0}
 recipe = {}
 price = 0
 
@@ -81,4 +82,5 @@ print('| %-28s %7s%% |' % ('Tin ' + str(round(stat['tin'], 2)) + 'mcg', round(st
 print('| %-28s %7s%% |' % ('Vanadium ' + str(round(stat['vanadium'], 2)) + 'mcg', round(stat['vanadium'] / 10 * 100, 2)))
 print('| %-28s %7s%% |' % ('Lycopene ' + str(round(stat['lycopene'], 2)) + 'mcg', round(stat['lycopene'] / 600 * 100, 2)))
 print('| %-28s %7s%% |' % ('Choline ' + str(round(stat['choline'], 2)) + 'mg', round(stat['choline'] / 550 * 100, 2)))
+print('| %-28s %7s%% |' % ('Sodium ' + str(round(stat['sodium'], 2)) + 'mg', round(stat['sodium'] / 1500 * 100, 2)))
 print('+---------------------------------------+')
