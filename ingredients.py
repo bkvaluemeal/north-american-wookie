@@ -149,3 +149,79 @@ class SoyFlour:
 
 	def getUnit(self):
 		return self.info['unit']
+
+class OatFlour:
+	nutrition = {
+		'calories': 398,
+		'carbs': 65,
+		'fiber': 12.5,
+		'protein': 16,
+		'total_fat': 7.2,
+		'saturated_fat': 1.5,
+		'monounsaturated_fat': 2.9,
+		'polyunsaturated_fat': 3.3,
+		'omega_3': 0.145,
+		'omega_6': 3.185,
+		'cholesterol': 0,
+		'vitamin a': 0,
+		'vitamin c': 0,
+		'vitamin d': 0,
+		'vitamin e': 1,
+		'vitamin k': 3.2,
+		'thiamin': 0.7,
+		'riboflavin': 0.1,
+		'niacin': 1.5,
+		'vitamin b6': 0.1,
+		'folic acid': 32,
+		'vitamin b12': 0,
+		'biotin': 0,
+		'pantothenic acid': 0.2,
+		'calcium': 0.055,
+		'iron': 2.5,
+		'phosphorus': 0.453,
+		'iodine': 0,
+		'magnesium': 144,
+		'zinc': 3.2,
+		'selenium': 34,
+		'copper': 0.4,
+		'manganese': 4,
+		'chromium': 0,
+		'molybdenum': 200,
+		'chloride': 0,
+		'potassium': 0.371,
+		'boron': 0,
+		'nickel': 0,
+		'silicon': 0,
+		'tin': 0,
+		'vanadium': 0,
+		'lycopene': 0,
+		'choline': 29.9
+	}
+	info = {
+		'name': 'Oat Flour',
+		'unit': 'g',
+		'size': 22680,
+		'price': 57.99,
+		'source': 'amazon',
+		'link': 'http://amzn.com/B007KVA5CU'
+	}
+
+	def __init__(self, x):
+		self.x = x
+		for key in self.nutrition:
+			self.nutrition[key] *= x/100
+
+	def getNutrition(self):
+		return self.nutrition
+
+	def getInfo(self):
+		return self.info
+
+	def getPrice(self):
+		return (self.x / self.info['size']) * self.info['price']
+
+	def getName(self):
+		return self.info['name']
+
+	def getUnit(self):
+		return self.info['unit']
