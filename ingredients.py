@@ -73,3 +73,79 @@ class MasaHarina:
 
 	def getUnit(self):
 		return self.info['unit']
+
+class SoyFlour:
+	nutrition = {
+		'calories': 300,
+		'carbs': 35,
+		'fiber': 18,
+		'protein': 51,
+		'total_fat': 2,
+		'saturated_fat': 0.5,
+		'monounsaturated_fat': 0.2,
+		'polyunsaturated_fat': 0.6,
+		'omega_3': 0.066,
+		'omega_6': 0.493,
+		'cholesterol': 0,
+		'vitamin a': 40,
+		'vitamin c': 0,
+		'vitamin d': 0,
+		'vitamin e': 0.2,
+		'vitamin k': 4.3,
+		'thiamin': 0.7,
+		'riboflavin': 0.3,
+		'niacin': 2.7,
+		'vitamin b6': 0.6,
+		'folic acid': 320,
+		'vitamin b12': 0,
+		'biotin': 0,
+		'pantothenic acid': 2.1,
+		'calcium': 0.3,
+		'iron': 5,
+		'phosphorus': 0.708,
+		'iodine': 0,
+		'magnesium': 304,
+		'zinc': 2.6,
+		'selenium': 1.8,
+		'copper': 4.3,
+		'manganese': 3.2,
+		'chromium': 0,
+		'molybdenum': 0,
+		'chloride': 0,
+		'potassium': 2.5,
+		'boron': 0,
+		'nickel': 0,
+		'silicon': 0,
+		'tin': 0,
+		'vanadium': 0,
+		'lycopene': 0,
+		'choline': 11.9
+	}
+	info = {
+		'name': 'Soy Flour',
+		'unit': 'g',
+		'size': 22680,
+		'price': 56.99,
+		'source': 'amazon',
+		'link': 'http://amzn.com/B00993C02U'
+	}
+
+	def __init__(self, x):
+		self.x = x
+		for key in self.nutrition:
+			self.nutrition[key] *= x/100
+
+	def getNutrition(self):
+		return self.nutrition
+
+	def getInfo(self):
+		return self.info
+
+	def getPrice(self):
+		return (self.x / self.info['size']) * self.info['price']
+
+	def getName(self):
+		return self.info['name']
+
+	def getUnit(self):
+		return self.info['unit']
