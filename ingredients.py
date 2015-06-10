@@ -844,3 +844,80 @@ class AllPurposeFlour:
 
 	def getUnit(self):
 		return self.info['unit']
+
+class WholeWheatFlour:
+	nutrition = {
+		'calories': 339,
+		'carbs': 72.6,
+		'fiber': 12.2,
+		'protein': 13.7,
+		'total_fat': 1.9,
+		'saturated_fat': 0.3,
+		'monounsaturated_fat': 0.2,
+		'polyunsaturated_fat': 0.8,
+		'omega_3': 38,
+		'omega_6': 738,
+		'cholesterol': 0,
+		'vitamin a': 9,
+		'vitamin c': 0,
+		'vitamin d': 0,
+		'vitamin e': 1.2,
+		'vitamin k': 1.9,
+		'thiamin': 0.4,
+		'riboflavin': 0.2,
+		'niacin': 6.4,
+		'vitamin b6': 0.3,
+		'folic acid': 44,
+		'vitamin b12': 0,
+		'biotin': 0,
+		'pantothenic acid': 1,
+		'calcium': 34,
+		'iron': 3.9,
+		'phosphorus': 346,
+		'iodine': 0,
+		'magnesium': 138,
+		'zinc': 2.9,
+		'selenium': 70.7,
+		'copper': 0.4,
+		'manganese': 3.8,
+		'chromium': 0,
+		'molybdenum': 0,
+		'chloride': 0,
+		'potassium': 405,
+		'boron': 0,
+		'nickel': 0,
+		'silicon': 0,
+		'tin': 0,
+		'vanadium': 0,
+		'lycopene': 0,
+		'choline': 31.2,
+		'sodium': 5
+	}
+	info = {
+		'name': 'Whole Wheat Flour',
+		'unit': 'g',
+		'size': 22680,
+		'price': 41.99,
+		'source': 'amazon',
+		'link': 'http://amzn.com/B0096QV21U'
+	}
+
+	def __init__(self, x):
+		self.x = x
+		for key in self.nutrition:
+			self.nutrition[key] *= x/100
+
+	def getNutrition(self):
+		return self.nutrition
+
+	def getInfo(self):
+		return self.info
+
+	def getPrice(self):
+		return (self.x / self.info['size']) * self.info['price']
+
+	def getName(self):
+		return self.info['name']
+
+	def getUnit(self):
+		return self.info['unit']
