@@ -767,3 +767,80 @@ class BarleyFlour:
 
 	def getUnit(self):
 		return self.info['unit']
+
+class AllPurposeFlour:
+	nutrition = {
+		'calories': 364,
+		'carbs': 76.3,
+		'fiber': 2.7,
+		'protein': 10.3,
+		'total_fat': 1,
+		'saturated_fat': 0.2,
+		'monounsaturated_fat': 0.1,
+		'polyunsaturated_fat': 0.4,
+		'omega_3': 22,
+		'omega_6': 391,
+		'cholesterol': 0,
+		'vitamin a': 0,
+		'vitamin c': 0,
+		'vitamin d': 0,
+		'vitamin e': 0.15,
+		'vitamin k': 0.3,
+		'thiamin': 0.8,
+		'riboflavin': 0.5,
+		'niacin': 5.9,
+		'vitamin b6': 0,
+		'folic acid': 183,
+		'vitamin b12': 0,
+		'biotin': 0,
+		'pantothenic acid': 0.4,
+		'calcium': 15,
+		'iron': 4.6,
+		'phosphorus': 108,
+		'iodine': 0,
+		'magnesium': 22,
+		'zinc': 0.7,
+		'selenium': 33.9,
+		'copper': 0.1,
+		'manganese': 0.7,
+		'chromium': 0,
+		'molybdenum': 0,
+		'chloride': 0,
+		'potassium': 107,
+		'boron': 0,
+		'nickel': 0,
+		'silicon': 0,
+		'tin': 0,
+		'vanadium': 0,
+		'lycopene': 0,
+		'choline': 10.4,
+		'sodium': 2
+	}
+	info = {
+		'name': 'All Purpose Flour',
+		'unit': 'g',
+		'size': 22680,
+		'price': 41.99,
+		'source': 'amazon',
+		'link': 'http://amzn.com/B0007NC134'
+	}
+
+	def __init__(self, x):
+		self.x = x
+		for key in self.nutrition:
+			self.nutrition[key] *= x/100
+
+	def getNutrition(self):
+		return self.nutrition
+
+	def getInfo(self):
+		return self.info
+
+	def getPrice(self):
+		return (self.x / self.info['size']) * self.info['price']
+
+	def getName(self):
+		return self.info['name']
+
+	def getUnit(self):
+		return self.info['unit']
