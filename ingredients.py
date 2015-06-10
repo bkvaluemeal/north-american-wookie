@@ -536,3 +536,157 @@ class CornStarch:
 
 	def getUnit(self):
 		return self.info['unit']
+
+class WhiteRiceFlour:
+	nutrition = {
+		'calories': 366,
+		'carbs': 80.1,
+		'fiber': 2.4,
+		'protein': 5.9,
+		'total_fat': 1.4,
+		'saturated_fat': 0.4,
+		'monounsaturated_fat': 0.4,
+		'polyunsaturated_fat': 0.4,
+		'omega_3': 67,
+		'omega_6': 313,
+		'cholesterol': 0,
+		'vitamin a': 0,
+		'vitamin c': 0,
+		'vitamin d': 0,
+		'vitamin e': 0.15,
+		'vitamin k': 0,
+		'thiamin': 0.1,
+		'riboflavin': 0,
+		'niacin': 2.6,
+		'vitamin b6': 0.4,
+		'folic acid': 4,
+		'vitamin b12': 0,
+		'biotin': 0,
+		'pantothenic acid': 0.8,
+		'calcium': 10,
+		'iron': 0.4,
+		'phosphorus': 98,
+		'iodine': 0,
+		'magnesium': 35,
+		'zinc': 0.8,
+		'selenium': 15.1,
+		'copper': 0.1,
+		'manganese': 1.2,
+		'chromium': 0,
+		'molybdenum': 0,
+		'chloride': 0,
+		'potassium': 76,
+		'boron': 0,
+		'nickel': 0,
+		'silicon': 0,
+		'tin': 0,
+		'vanadium': 0,
+		'lycopene': 0,
+		'choline': 5.8,
+		'sodium': 0
+	}
+	info = {
+		'name': 'White Rice Flour',
+		'unit': 'g',
+		'size': 22680,
+		'price': 60.99,
+		'source': 'amazon',
+		'link': 'http://amzn.com/B0097EY2QS'
+	}
+
+	def __init__(self, x):
+		self.x = x
+		for key in self.nutrition:
+			self.nutrition[key] *= x/100
+
+	def getNutrition(self):
+		return self.nutrition
+
+	def getInfo(self):
+		return self.info
+
+	def getPrice(self):
+		return (self.x / self.info['size']) * self.info['price']
+
+	def getName(self):
+		return self.info['name']
+
+	def getUnit(self):
+		return self.info['unit']
+
+class BrownRiceFlour:
+	nutrition = {
+		'calories': 363,
+		'carbs': 76.5,
+		'fiber': 4.6,
+		'protein': 7.2,
+		'total_fat': 2.8,
+		'saturated_fat': 0.6,
+		'monounsaturated_fat': 1,
+		'polyunsaturated_fat': 1,
+		'omega_3': 42,
+		'omega_6': 954,
+		'cholesterol': 0,
+		'vitamin a': 0,
+		'vitamin c': 0,
+		'vitamin d': 0,
+		'vitamin e': 1.8,
+		'vitamin k': 0,
+		'thiamin': 0.4,
+		'riboflavin': 0.1,
+		'niacin': 6.3,
+		'vitamin b6': 0.7,
+		'folic acid': 16,
+		'vitamin b12': 0,
+		'biotin': 0,
+		'pantothenic acid': 1.6,
+		'calcium': 11,
+		'iron': 2,
+		'phosphorus': 337,
+		'iodine': 0,
+		'magnesium': 112,
+		'zinc': 2.5,
+		'selenium': 0,
+		'copper': 0.2,
+		'manganese': 4,
+		'chromium': 0,
+		'molybdenum': 0,
+		'chloride': 0,
+		'potassium': 289,
+		'boron': 0,
+		'nickel': 0,
+		'silicon': 0,
+		'tin': 0,
+		'vanadium': 0,
+		'lycopene': 0,
+		'choline': 0,
+		'sodium': 8
+	}
+	info = {
+		'name': 'Brown Rice Flour',
+		'unit': 'g',
+		'size': 22680,
+		'price': 66.99,
+		'source': 'amazon',
+		'link': 'http://amzn.com/B0098QDMCA'
+	}
+
+	def __init__(self, x):
+		self.x = x
+		for key in self.nutrition:
+			self.nutrition[key] *= x/100
+
+	def getNutrition(self):
+		return self.nutrition
+
+	def getInfo(self):
+		return self.info
+
+	def getPrice(self):
+		return (self.x / self.info['size']) * self.info['price']
+
+	def getName(self):
+		return self.info['name']
+
+	def getUnit(self):
+		return self.info['unit']
