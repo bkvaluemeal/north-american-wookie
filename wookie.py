@@ -31,7 +31,7 @@ while True:
 			stat[key] += value
 		price += item.getPrice()
 
-	if stat['calories'] == 2000:
+	if price <= 2:
 		break
 	else:
 		stat = {'calories': 0, 'carbs': 0, 'fiber': 0, 'protein': 0, 'total_fat': 0,
@@ -48,6 +48,9 @@ while True:
 		recipe = {}
 		price = 0
 
+for item in recipe:
+	print(item)
+
 print()
 print('$' + str(round(price, 2)) + ' per day')
 print()
@@ -59,12 +62,12 @@ print('+---------------------------------------+')
 print('| %-28s %7s%% |' % ('Carbohydrates ' + str(round(stat['carbs'], 2)) + 'g', round(stat['carbs'] / 250 * 100, 2)))
 print('| %-28s %7s%% |' % ('  Fiber ' + str(round(stat['fiber'], 2)) + 'g', round(stat['fiber'] / 28 * 100, 2)))
 print('| %-28s %7s%% |' % ('Protein ' + str(round(stat['protein'], 2)) + 'g', round(stat['protein'] / 85 * 100, 2)))
-print('| %-28s %7s%% |' % ('Total Fat '+ str(round(stat['total_fat'], 2)) + 'g', round(stat['total_fat'] / 65 * 100)))
+print('| %-28s %7s%% |' % ('Total Fat '+ str(round(stat['total_fat'], 2)) + 'g', round(stat['total_fat'] / 65 * 100, 2)))
 print('|   %-35s |' % ('Saturated Fat ' + str(round(stat['saturated_fat'], 2)) + 'g'))
 print('|   %-35s |' % ('Monounsaturated Fat ' + str(round(stat['monounsaturated_fat'], 2)) + 'g'))
 print('|   %-35s |' % ('Polyunsaturated Fat ' + str(round(stat['polyunsaturated_fat'], 2)) + 'g'))
-print('|   %-26s %7s%% |' % ('Omega-3 Fatty Acids ' + str(round(stat['omega_3'], 2)) + 'g', round(stat['omega_3'] / 1.6 * 100)))
-print('|   %-26s %7s%% |' % ('Omega-6 Fatty Acids ' + str(round(stat['omega_6'], 2)) + 'g', round(stat['omega_6'] / 17 * 100)))
+print('|   %-26s %7s%% |' % ('Omega-3 Fatty Acids ' + str(round(stat['omega_3'], 2)) + 'g', round(stat['omega_3'] / 1.6 * 100, 2)))
+print('|   %-26s %7s%% |' % ('Omega-6 Fatty Acids ' + str(round(stat['omega_6'], 2)) + 'g', round(stat['omega_6'] / 17 * 100, 2)))
 print('| %-37s |' % ('Cholesterol ' + str(round(stat['cholesterol'], 2)) + 'mg'))
 print('+---------------------------------------+')
 print('| %-28s %7s%% |' % ('Vitamin A ' + str(round(stat['vitamin a'], 2)) + ' IU', round(stat['vitamin a'] / 3000 * 100, 2)))
