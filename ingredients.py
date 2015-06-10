@@ -690,3 +690,80 @@ class BrownRiceFlour:
 
 	def getUnit(self):
 		return self.info['unit']
+
+class BarleyFlour:
+	nutrition = {
+		'calories': 345,
+		'carbs': 74.5,
+		'fiber': 10.1,
+		'protein': 10.5,
+		'total_fat': 1.6,
+		'saturated_fat': 0.3,
+		'monounsaturated_fat': 0.2,
+		'polyunsaturated_fat': 0.8,
+		'omega_3': 77,
+		'omega_6': 695,
+		'cholesterol': 0,
+		'vitamin a': 0,
+		'vitamin c': 0,
+		'vitamin d': 0,
+		'vitamin e': 0.9,
+		'vitamin k': 2.2,
+		'thiamin': 0.4,
+		'riboflavin': 0.1,
+		'niacin': 6.3,
+		'vitamin b6': 0.4,
+		'folic acid': 8,
+		'vitamin b12': 0,
+		'biotin': 0,
+		'pantothenic acid': 0.1,
+		'calcium': 32,
+		'iron': 2.7,
+		'phosphorus': 296,
+		'iodine': 0,
+		'magnesium': 96,
+		'zinc': 2,
+		'selenium': 37.7,
+		'copper': 0.23,
+		'manganese': 1,
+		'chromium': 0,
+		'molybdenum': 0,
+		'chloride': 0,
+		'potassium': 309,
+		'boron': 0,
+		'nickel': 0,
+		'silicon': 0,
+		'tin': 0,
+		'vanadium': 0,
+		'lycopene': 0,
+		'choline': 37.8,
+		'sodium': 4
+	}
+	info = {
+		'name': 'Barley Flour',
+		'unit': 'g',
+		'size': 22680,
+		'price': 43.99,
+		'source': 'amazon',
+		'link': 'http://amzn.com/B00993BW7Y'
+	}
+
+	def __init__(self, x):
+		self.x = x
+		for key in self.nutrition:
+			self.nutrition[key] *= x/100
+
+	def getNutrition(self):
+		return self.nutrition
+
+	def getInfo(self):
+		return self.info
+
+	def getPrice(self):
+		return (self.x / self.info['size']) * self.info['price']
+
+	def getName(self):
+		return self.info['name']
+
+	def getUnit(self):
+		return self.info['unit']
