@@ -15,20 +15,41 @@ stat = {'calories': 0, 'carbs': 0, 'fiber': 0, 'protein': 0, 'total_fat': 0,
 recipe = {}
 price = 0
 
-for ingredient in dir(ingredients)[:-8]:
-	x = random.randint(0, 1000)
+while True:
+	for ingredient in dir(ingredients)[:-8]:
+		x = round(random.uniform(0.0, 500.0), 1)
 
-	if x == 0:
-		continue
+		if x == 0:
+			continue
 
-	temp = getattr(ingredients, ingredient)(x)
-	recipe[temp.getName() + ' ' + str(x) + temp.getUnit()] = temp
+		temp = getattr(ingredients, ingredient)(x)
+		recipe[temp.getName() + ' ' + str(x) + temp.getUnit()] = temp
 
-for ammount, item in recipe.items():
-	print(ammount)
-	for key, value in item.getNutrition().items():
-		stat[key] += value
-	price += item.getPrice()
+	for ammount, item in recipe.items():
+#		print(ammount)
+		for key, value in item.getNutrition().items():
+			stat[key] += value
+		price += item.getPrice()
+
+	if price <= 2:
+		break
+	else:
+		stat = {'calories': 0, 'carbs': 0, 'fiber': 0, 'protein': 0, 'total_fat': 0,
+			'saturated_fat': 0, 'monounsaturated_fat': 0, 'polyunsaturated_fat': 0,
+			'omega_3': 0, 'omega_6': 0, 'cholesterol': 0, 'vitamin a': 0,
+			'vitamin c': 0, 'vitamin d': 0, 'vitamin e': 0, 'vitamin k': 0,
+			'thiamin': 0, 'riboflavin': 0, 'niacin': 0, 'vitamin b6': 0,
+			'folic acid': 0, 'vitamin b12': 0, 'biotin': 0, 'pantothenic acid': 0,
+			'calcium': 0, 'iron': 0, 'phosphorus': 0, 'iodine': 0, 'magnesium': 0,
+			'zinc': 0, 'selenium': 0, 'copper': 0, 'manganese': 0, 'chromium': 0,
+			'molybdenum': 0, 'chloride': 0, 'potassium': 0, 'boron': 0, 'nickel': 0,
+			'silicon': 0, 'tin': 0, 'vanadium': 0, 'lycopene': 0, 'choline': 0,
+			'sodium': 0}
+		recipe = {}
+		price = 0
+
+for item in recipe:
+	print(item)
 
 print()
 print('$' + str(round(price, 2)) + ' per day')
@@ -41,12 +62,12 @@ print('+---------------------------------------+')
 print('| %-28s %7s%% |' % ('Carbohydrates ' + str(round(stat['carbs'], 2)) + 'g', round(stat['carbs'] / 250 * 100, 2)))
 print('| %-28s %7s%% |' % ('  Fiber ' + str(round(stat['fiber'], 2)) + 'g', round(stat['fiber'] / 28 * 100, 2)))
 print('| %-28s %7s%% |' % ('Protein ' + str(round(stat['protein'], 2)) + 'g', round(stat['protein'] / 85 * 100, 2)))
-print('| %-28s %7s%% |' % ('Total Fat '+ str(round(stat['total_fat'], 2)) + 'g', round(stat['total_fat'] / 65 * 100)))
+print('| %-28s %7s%% |' % ('Total Fat '+ str(round(stat['total_fat'], 2)) + 'g', round(stat['total_fat'] / 65 * 100, 2)))
 print('|   %-35s |' % ('Saturated Fat ' + str(round(stat['saturated_fat'], 2)) + 'g'))
 print('|   %-35s |' % ('Monounsaturated Fat ' + str(round(stat['monounsaturated_fat'], 2)) + 'g'))
 print('|   %-35s |' % ('Polyunsaturated Fat ' + str(round(stat['polyunsaturated_fat'], 2)) + 'g'))
-print('|   %-26s %7s%% |' % ('Omega-3 Fatty Acids ' + str(round(stat['omega_3'], 2)) + 'g', round(stat['omega_3'] / 1.6 * 100)))
-print('|   %-26s %7s%% |' % ('Omega-6 Fatty Acids ' + str(round(stat['omega_6'], 2)) + 'g', round(stat['omega_6'] / 17 * 100)))
+print('|   %-26s %7s%% |' % ('Omega-3 Fatty Acids ' + str(round(stat['omega_3'], 2)) + 'g', round(stat['omega_3'] / 1.6 * 100, 2)))
+print('|   %-26s %7s%% |' % ('Omega-6 Fatty Acids ' + str(round(stat['omega_6'], 2)) + 'g', round(stat['omega_6'] / 17 * 100, 2)))
 print('| %-37s |' % ('Cholesterol ' + str(round(stat['cholesterol'], 2)) + 'mg'))
 print('+---------------------------------------+')
 print('| %-28s %7s%% |' % ('Vitamin A ' + str(round(stat['vitamin a'], 2)) + ' IU', round(stat['vitamin a'] / 3000 * 100, 2)))
