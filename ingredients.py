@@ -921,3 +921,157 @@ class WholeWheatFlour:
 
 	def getUnit(self):
 		return self.info['unit']
+
+class YellowCornMeal:
+	info = {
+		'name': 'Yellow Corn Meal',
+		'unit': 'g',
+		'size': 22680,
+		'price': 43.99,
+		'source': 'amazon',
+		'link': 'http://amzn.com/B0096Q5IO2'
+	}
+
+	def __init__(self, x):
+		self.nutrition = {
+			'calories': 362,
+			'carbs': 76.9,
+			'fiber': 7.3,
+			'protein': 8.1,
+			'total_fat': 3.6,
+			'saturated_fat': 0.5,
+			'monounsaturated_fat': 0.9,
+			'polyunsaturated_fat': 1.6,
+			'omega_3': 49,
+			'omega_6': 1589,
+			'cholesterol': 0,
+			'vitamin a': 214,
+			'vitamin c': 0,
+			'vitamin d': 0,
+			'vitamin e': 0.6,
+			'vitamin k': 0.3,
+			'thiamin': 0.4,
+			'riboflavin': 0.2,
+			'niacin': 3.6,
+			'vitamin b6': 0.3,
+			'folic acid': 25,
+			'vitamin b12': 0,
+			'biotin': 0,
+			'pantothenic acid': 0.4,
+			'calcium': 6,
+			'iron': 3.5,
+			'phosphorus': 241,
+			'iodine': 0,
+			'magnesium': 127,
+			'zinc': 1.8,
+			'selenium': 15.5,
+			'copper': 0.2,
+			'manganese': 0.5,
+			'chromium': 0,
+			'molybdenum': 0,
+			'chloride': 0,
+			'potassium': 287,
+			'boron': 0,
+			'nickel': 0,
+			'silicon': 0,
+			'tin': 0,
+			'vanadium': 0,
+			'lycopene': 0,
+			'choline': 21.6,
+			'sodium': 35
+		}
+		self.x = x
+		for key in self.nutrition:
+			self.nutrition[key] *= x/100
+
+	def getNutrition(self):
+		return self.nutrition
+
+	def getInfo(self):
+		return self.info
+
+	def getPrice(self):
+		return (self.x / self.info['size']) * self.info['price']
+
+	def getName(self):
+		return self.info['name']
+
+	def getUnit(self):
+		return self.info['unit']
+
+class YellowCornFlour:
+	info = {
+		'name': 'Yellow Corn Flour',
+		'unit': 'g',
+		'size': 22680,
+		'price': 37.99,
+		'source': 'amazon',
+		'link': 'http://amzn.com/B0096QRHM8'
+	}
+
+	def __init__(self, x):
+		self.nutrition = {
+			'calories': 361,
+			'carbs': 76.8,
+			'fiber': 7.3,
+			'protein': 6.9,
+			'total_fat': 3.9,
+			'saturated_fat': 0.5,
+			'monounsaturated_fat': 1,
+			'polyunsaturated_fat': 1.8,
+			'omega_3': 53,
+			'omega_6': 1706,
+			'cholesterol': 0,
+			'vitamin a': 214,
+			'vitamin c': 0,
+			'vitamin d': 0,
+			'vitamin e': 0.6,
+			'vitamin k': 0.3,
+			'thiamin': 0.2,
+			'riboflavin': 0.1,
+			'niacin': 1.9,
+			'vitamin b6': 0.4,
+			'folic acid': 25,
+			'vitamin b12': 0,
+			'biotin': 0,
+			'pantothenic acid': 0.7,
+			'calcium': 7,
+			'iron': 2.4,
+			'phosphorus': 272,
+			'iodine': 0,
+			'magnesium': 93,
+			'zinc': 1.7,
+			'selenium': 15.4,
+			'copper': 0.2,
+			'manganese': 0.5,
+			'chromium': 0,
+			'molybdenum': 0,
+			'chloride': 0,
+			'potassium': 315,
+			'boron': 0,
+			'nickel': 0,
+			'silicon': 0,
+			'tin': 0,
+			'vanadium': 0,
+			'lycopene': 0,
+			'choline': 21.6,
+			'sodium': 5
+		}
+		self.x = x
+		for key in self.nutrition:
+			self.nutrition[key] *= x/100
+
+	def getNutrition(self):
+		return self.nutrition
+
+	def getInfo(self):
+		return self.info
+
+	def getPrice(self):
+		return (self.x / self.info['size']) * self.info['price']
+
+	def getName(self):
+		return self.info['name']
+
+	def getUnit(self):
+		return self.info['unit']
