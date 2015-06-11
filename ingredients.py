@@ -75,6 +75,9 @@ class MasaHarina:
 	def getUnit(self):
 		return self.info['unit']
 
+	def getX(self):
+		return self.x
+
 class SoyFlour:
 	info = {
 		'name': 'Soy Flour',
@@ -151,6 +154,9 @@ class SoyFlour:
 
 	def getUnit(self):
 		return self.info['unit']
+
+	def getX(self):
+		return self.x
 
 class OatFlour:
 	info = {
@@ -229,6 +235,9 @@ class OatFlour:
 	def getUnit(self):
 		return self.info['unit']
 
+	def getX(self):
+		return self.x
+
 class Dextrose:
 	info = {
 		'name': 'Dextrose',
@@ -305,6 +314,9 @@ class Dextrose:
 
 	def getUnit(self):
 		return self.info['unit']
+
+	def getX(self):
+		return self.x
 
 class Maltodextrin:
 	info = {
@@ -383,6 +395,9 @@ class Maltodextrin:
 	def getUnit(self):
 		return self.info['unit']
 
+	def getX(self):
+		return self.x
+
 class PotatoStarch:
 	info = {
 		'name': 'Potato Starch',
@@ -459,6 +474,9 @@ class PotatoStarch:
 
 	def getUnit(self):
 		return self.info['unit']
+
+	def getX(self):
+		return self.x
 
 class CornStarch:
 	info = {
@@ -537,6 +555,9 @@ class CornStarch:
 	def getUnit(self):
 		return self.info['unit']
 
+	def getX(self):
+		return self.x
+
 class WhiteRiceFlour:
 	info = {
 		'name': 'White Rice Flour',
@@ -613,6 +634,9 @@ class WhiteRiceFlour:
 
 	def getUnit(self):
 		return self.info['unit']
+
+	def getX(self):
+		return self.x
 
 class BrownRiceFlour:
 	info = {
@@ -691,6 +715,9 @@ class BrownRiceFlour:
 	def getUnit(self):
 		return self.info['unit']
 
+	def getX(self):
+		return self.x
+
 class BarleyFlour:
 	info = {
 		'name': 'Barley Flour',
@@ -767,6 +794,9 @@ class BarleyFlour:
 
 	def getUnit(self):
 		return self.info['unit']
+
+	def getX(self):
+		return self.x
 
 class AllPurposeFlour:
 	info = {
@@ -845,6 +875,9 @@ class AllPurposeFlour:
 	def getUnit(self):
 		return self.info['unit']
 
+	def getX(self):
+		return self.x
+
 class WholeWheatFlour:
 	info = {
 		'name': 'Whole Wheat Flour',
@@ -921,6 +954,9 @@ class WholeWheatFlour:
 
 	def getUnit(self):
 		return self.info['unit']
+
+	def getX(self):
+		return self.x
 
 class YellowCornMeal:
 	info = {
@@ -999,6 +1035,9 @@ class YellowCornMeal:
 	def getUnit(self):
 		return self.info['unit']
 
+	def getX(self):
+		return self.x
+
 class YellowCornFlour:
 	info = {
 		'name': 'Yellow Corn Flour',
@@ -1075,6 +1114,9 @@ class YellowCornFlour:
 
 	def getUnit(self):
 		return self.info['unit']
+
+	def getX(self):
+		return self.x
 
 class OatFiber:
 	info = {
@@ -1153,6 +1195,9 @@ class OatFiber:
 	def getUnit(self):
 		return self.info['unit']
 
+	def getX(self):
+		return self.x
+
 class WheyProteinConcentrate80:
 	info = {
 		'name': 'Whey Protein Concentrate 80%',
@@ -1229,6 +1274,9 @@ class WheyProteinConcentrate80:
 
 	def getUnit(self):
 		return self.info['unit']
+
+	def getX(self):
+		return self.x
 
 class WheyProteinConcentrate34:
 	info = {
@@ -1307,6 +1355,9 @@ class WheyProteinConcentrate34:
 	def getUnit(self):
 		return self.info['unit']
 
+	def getX(self):
+		return self.x
+
 class WheyProteinIsolate:
 	info = {
 		'name': 'Whey Protein Isolate',
@@ -1383,3 +1434,6 @@ class WheyProteinIsolate:
 
 	def getUnit(self):
 		return self.info['unit']
+
+	def getX(self):
+		return self.x
