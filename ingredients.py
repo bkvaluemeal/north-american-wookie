@@ -1152,3 +1152,234 @@ class OatFiber:
 
 	def getUnit(self):
 		return self.info['unit']
+
+class WheyProteinConcentrate80:
+	info = {
+		'name': 'Whey Protein Concentrate 80%',
+		'unit': 'g',
+		'size': 20000,
+		'price': 371.99,
+		'source': 'amazon',
+		'link': 'http://amzn.com/B0096R2LQO'
+	}
+
+	def __init__(self, x):
+		self.nutrition = {
+			'calories': 390,
+			'carbs': 0,
+			'fiber': 0,
+			'protein': 80,
+			'total_fat': 6,
+			'saturated_fat': 2,
+			'monounsaturated_fat': 0,
+			'polyunsaturated_fat': 0,
+			'omega_3': 0,
+			'omega_6': 0,
+			'cholesterol': 220,
+			'vitamin a': 0,
+			'vitamin c': 0,
+			'vitamin d': 0,
+			'vitamin e': 0,
+			'vitamin k': 0,
+			'thiamin': 0,
+			'riboflavin': 0,
+			'niacin': 0,
+			'vitamin b6': 0,
+			'folic acid': 0,
+			'vitamin b12': 0,
+			'biotin': 0,
+			'pantothenic acid': 0,
+			'calcium': 0.60,
+			'iron': 0.48,
+			'phosphorus': 200,
+			'iodine': 0,
+			'magnesium': 160,
+			'zinc': 0,
+			'selenium': 0,
+			'copper': 0,
+			'manganese': 0,
+			'chromium': 0,
+			'molybdenum': 0,
+			'chloride': 0,
+			'potassium': 480,
+			'boron': 0,
+			'nickel': 0,
+			'silicon': 0,
+			'tin': 0,
+			'vanadium': 0,
+			'lycopene': 0,
+			'choline': 0,
+			'sodium': 180
+		}
+		self.x = x
+		for key in self.nutrition:
+			self.nutrition[key] *= x/100
+
+	def getNutrition(self):
+		return self.nutrition
+
+	def getInfo(self):
+		return self.info
+
+	def getPrice(self):
+		return (self.x / self.info['size']) * self.info['price']
+
+	def getName(self):
+		return self.info['name']
+
+	def getUnit(self):
+		return self.info['unit']
+
+class WheyProteinConcentrate34:
+	info = {
+		'name': 'Whey Protein Concentrate 34%',
+		'unit': 'g',
+		'size': 22680,
+		'price': 162.99,
+		'source': 'amazon',
+		'link': 'http://amzn.com/B0096R205G'
+	}
+
+	def __init__(self, x):
+		self.nutrition = {
+			'calories': 380,
+			'carbs': 51,
+			'fiber': 0,
+			'protein': 35,
+			'total_fat': 3,
+			'saturated_fat': 2.5,
+			'monounsaturated_fat': 0,
+			'polyunsaturated_fat': 0,
+			'omega_3': 0,
+			'omega_6': 0,
+			'cholesterol': 95,
+			'vitamin a': 60,
+			'vitamin c': 1.8,
+			'vitamin d': 0,
+			'vitamin e': 0,
+			'vitamin k': 0,
+			'thiamin': 0,
+			'riboflavin': 0,
+			'niacin': 0,
+			'vitamin b6': 0,
+			'folic acid': 0,
+			'vitamin b12': 0,
+			'biotin': 0,
+			'pantothenic acid': 0,
+			'calcium': 0.50,
+			'iron': 0.32,
+			'phosphorus': 200,
+			'iodine': 0,
+			'magnesium': 160,
+			'zinc': 0,
+			'selenium': 0,
+			'copper': 0,
+			'manganese': 0,
+			'chromium': 0,
+			'molybdenum': 0,
+			'chloride': 0,
+			'potassium': 480,
+			'boron': 0,
+			'nickel': 0,
+			'silicon': 0,
+			'tin': 0,
+			'vanadium': 0,
+			'lycopene': 0,
+			'choline': 0,
+			'sodium': 550
+		}
+		self.x = x
+		for key in self.nutrition:
+			self.nutrition[key] *= x/100
+
+	def getNutrition(self):
+		return self.nutrition
+
+	def getInfo(self):
+		return self.info
+
+	def getPrice(self):
+		return (self.x / self.info['size']) * self.info['price']
+
+	def getName(self):
+		return self.info['name']
+
+	def getUnit(self):
+		return self.info['unit']
+
+class WheyProteinIsolate:
+	info = {
+		'name': 'Whey Protein Isolate',
+		'unit': 'g',
+		'size': 4540,
+		'price': 126.11,
+		'source': 'amazon',
+		'link': 'http://amzn.com/B000MAK59O'
+	}
+
+	def __init__(self, x):
+		self.nutrition = {
+			'calories': 393,
+			'carbs': 0,
+			'fiber': 0,
+			'protein': 89.3,
+			'total_fat': 1.8,
+			'saturated_fat': 0,
+			'monounsaturated_fat': 0,
+			'polyunsaturated_fat': 0,
+			'omega_3': 0,
+			'omega_6': 0,
+			'cholesterol': 17.8,
+			'vitamin a': 0,
+			'vitamin c': 0,
+			'vitamin d': 0,
+			'vitamin e': 0,
+			'vitamin k': 0,
+			'thiamin': 0,
+			'riboflavin': 0,
+			'niacin': 0,
+			'vitamin b6': 0,
+			'folic acid': 0,
+			'vitamin b12': 0,
+			'biotin': 0,
+			'pantothenic acid': 0,
+			'calcium': 0.5,
+			'iron': 0,
+			'phosphorus': 0,
+			'iodine': 0,
+			'magnesium': 0,
+			'zinc': 0,
+			'selenium': 0,
+			'copper': 0,
+			'manganese': 0,
+			'chromium': 0,
+			'molybdenum': 0,
+			'chloride': 0,
+			'potassium': 482,
+			'boron': 0,
+			'nickel': 0,
+			'silicon': 0,
+			'tin': 0,
+			'vanadium': 0,
+			'lycopene': 0,
+			'choline': 0,
+			'sodium': 160
+		}
+		self.x = x
+		for key in self.nutrition:
+			self.nutrition[key] *= x/100
+
+	def getNutrition(self):
+		return self.nutrition
+
+	def getInfo(self):
+		return self.info
+
+	def getPrice(self):
+		return (self.x / self.info['size']) * self.info['price']
+
+	def getName(self):
+		return self.info['name']
+
+	def getUnit(self):
+		return self.info['unit']
