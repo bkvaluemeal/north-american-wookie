@@ -95,7 +95,48 @@ class Recipe:
 		return round(self.price, 2)
 
 	def getPercent(self):
-		return abs(self.stat['calories'] - 2000) / 2000 * 100
+		result = 0
+		result += abs(self.stat['calories'] - 2000) / 2000 * 100
+		result += abs(self.stat['carbs'] - 250) / 250 * 100
+		result += abs(self.stat['fiber'] - 28) / 28 * 100
+		result += abs(self.stat['protein'] - 85) / 85 * 100
+		result += abs(self.stat['total_fat'] - 65) / 65 * 100
+		result += abs(self.stat['vitamin a'] - 3000) / 3000 * 100
+		result += abs(self.stat['vitamin c'] - 90) / 90 * 100
+		result += abs(self.stat['vitamin d'] - 600) / 600 * 100
+		result += abs(self.stat['vitamin e'] - 20) / 20 * 100
+		result += abs(self.stat['vitamin k'] - 120) / 120 * 100
+		result += abs(self.stat['thiamin'] - 1.2) / 1.2 * 100
+		result += abs(self.stat['riboflavin'] - 1.3) / 1.3 * 100
+		result += abs(self.stat['niacin'] - 16) / 16 * 100
+		result += abs(self.stat['vitamin b6'] - 1.3) / 1.3 * 100
+		result += abs(self.stat['folic acid'] - 400) / 400 * 100
+		result += abs(self.stat['vitamin b12'] - 2.4) / 2.4 * 100
+		result += abs(self.stat['biotin'] - 30) / 30 * 100
+		result += abs(self.stat['pantothenic acid'] - 5) / 5 * 100
+		result += abs(self.stat['calcium'] - 1) / 1 * 100
+		result += abs(self.stat['iron'] - 8) / 8 * 100
+		result += abs(self.stat['phosphorus'] - 700) / 700 * 100
+		result += abs(self.stat['iodine'] - 150) / 150 * 100
+		result += abs(self.stat['magnesium'] - 420) / 420 * 100
+		result += abs(self.stat['zinc'] - 11) / 11 * 100
+		result += abs(self.stat['selenium'] - 55) / 55 * 100
+		result += abs(self.stat['copper'] - 0.9) / 0.9 * 100
+		result += abs(self.stat['manganese'] - 2.3) / 2.3 * 100
+		result += abs(self.stat['chromium'] - 35) / 35 * 100
+		result += abs(self.stat['molybdenum'] - 45) / 45 * 100
+		result += abs(self.stat['chloride'] - 2.3) / 2.3 * 100
+		result += abs(self.stat['potassium'] - 3.5) / 3.5 * 100
+		result += abs(self.stat['boron'] - 0.25) / 0.25 * 100
+		result += abs(self.stat['nickel'] - 5) / 5 * 100
+		result += abs(self.stat['silicon'] - 2) / 2 * 100
+		result += abs(self.stat['tin'] - 10) / 10 * 100
+		result += abs(self.stat['vanadium'] - 10) / 10 * 100
+		result += abs(self.stat['lycopene'] - 600) / 600 * 100
+		result += abs(self.stat['choline'] - 550) / 550 * 100
+		result += abs(self.stat['sodium'] - 1500) / 1500 * 100
+
+		return result / 39
 
 	def mutate(self):
 		result = {}
@@ -118,6 +159,7 @@ class Recipe:
 			'molybdenum': 0, 'chloride': 0, 'potassium': 0, 'boron': 0, 'nickel': 0,
 			'silicon': 0, 'tin': 0, 'vanadium': 0, 'lycopene': 0, 'choline': 0,
 			'sodium': 0}
+		self.price = 0
 
 		for ammount, item in self.recipe.items():
 			for key, value in item.getNutrition().items():
@@ -144,16 +186,22 @@ for gen in range(101):
 		temp.mutate()
 		recipes.append(temp)
 
+	best = None
+
 	for x in recipes:
 		print('[' + str(gen) + '] ' + str(x.getPercent()))
 
-		if x.getPercent() < most_fit.getPercent() and x.getPercent() >= 0:
-			most_fit = x
+		if best == None or (x.getPercent() < best.getPercent() and x.getPercent() >= 0):
+			best = x
+
+	most_fit = best
 
 print()
 print('[Result] ' + str(most_fit.getPercent()))
 print()
 for x in most_fit.getRecipe():
 	print(x)
+print()
+print('$' + str(most_fit.getPrice()))
 print()
 printLabel(most_fit.getStats())
