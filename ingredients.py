@@ -1437,3 +1437,83 @@ class WheyProteinIsolate:
 
 	def getX(self):
 		return self.x
+
+class IodisedSalt:
+	info = {
+		'name': 'Iodised Salt',
+		'unit': 'g',
+		'size': 17688,
+		'price': 12,
+		'source': 'dollar tree',
+		'link': 'http://www.dollartree.com/Royal-Crystal-Iodized-Salt-26-oz-Canisters/p294532/index.pro'
+	}
+
+	def __init__(self, x):
+		self.nutrition = {
+			'calories': 0,
+			'carbs': 0,
+			'fiber': 0,
+			'protein': 0,
+			'total_fat': 0,
+			'saturated_fat': 0,
+			'monounsaturated_fat': 0,
+			'polyunsaturated_fat': 0,
+			'omega_3': 0,
+			'omega_6': 0,
+			'cholesterol': 0,
+			'vitamin a': 0,
+			'vitamin c': 0,
+			'vitamin d': 0,
+			'vitamin e': 0,
+			'vitamin k': 0,
+			'thiamin': 0,
+			'riboflavin': 0,
+			'niacin': 0,
+			'vitamin b6': 0,
+			'folic acid': 0,
+			'vitamin b12': 0,
+			'biotin': 0,
+			'pantothenic acid': 0,
+			'calcium': 0,
+			'iron': 0,
+			'phosphorus': 0,
+			'iodine': 45000,
+			'magnesium': 0,
+			'zinc': 0,
+			'selenium': 0,
+			'copper': 0,
+			'manganese': 0,
+			'chromium': 0,
+			'molybdenum': 0,
+			'chloride': 60,
+			'potassium': 0,
+			'boron': 0,
+			'nickel': 0,
+			'silicon': 0,
+			'tin': 0,
+			'vanadium': 0,
+			'lycopene': 0,
+			'choline': 0,
+			'sodium': 400000
+		}
+		self.x = x
+		for key in self.nutrition:
+			self.nutrition[key] *= x/100
+
+	def getNutrition(self):
+		return self.nutrition
+
+	def getInfo(self):
+		return self.info
+
+	def getPrice(self):
+		return (self.x / self.info['size']) * self.info['price']
+
+	def getName(self):
+		return self.info['name']
+
+	def getUnit(self):
+		return self.info['unit']
+
+	def getX(self):
+		return self.x
