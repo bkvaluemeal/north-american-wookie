@@ -143,9 +143,13 @@ class Recipe:
 
 		for ammount, item in self.recipe.items():
 			ingredient = self.recipe[ammount]
-			x = round(ingredient.getX() * random.uniform(0.95, 1.05), 1)
+			x = ingredient.getX() * random.uniform(0.95, 1.05)
+
+			if x < 1:
+				continue
+
 			temp = type(ingredient)(x)
-			result[temp.getName() + ' ' + str(x) + temp.getUnit()] = temp
+			result[temp.getName() + ' ' + str(round(x, 1)) + temp.getUnit()] = temp
 
 		self.recipe = result
 		self.stat = {'calories': 0, 'carbs': 0, 'fiber': 0, 'protein': 0, 'total_fat': 0,
