@@ -59,7 +59,7 @@ print('	</table>')
 
 for ingredient in ingredients:
 	print('	<div class="modal fade" id="%s" role="dialog">' % (ingredient[0].lower().replace(' ', '-')))
-	print('		<div class="modal-dialog modal-sm">')
+	print('		<div class="modal-dialog" style="width: 90%">')
 	print('			<div class="modal-content">')
 	print('				<div class="modal-header">')
 	print('					<button type="button" class="close" data-dismiss="modal">&times;</button>')
@@ -69,16 +69,40 @@ for ingredient in ingredients:
 	print('					<table class="table">')
 	print('						<thead>')
 	print('							<tr>')
-	print('								<th>Nutrient</th>')
+	print('								<th>Macro Nutrients</th>')
+	print('								<th style="text-align: right">Amount</th>')
+	print('								<th></th>')
+	print('								<th>Vitamins</th>')
+	print('								<th style="text-align: right">Amount</th>')
+	print('								<th></th>')
+	print('								<th>Minerals</th>')
 	print('								<th style="text-align: right">Amount</th>')
 	print('							</tr>')
 	print('						</thead>')
 	print('						<tbody>')
 
-	for x in range(39):
+	for x in range(15):
 		print('							<tr>')
-		print('								<td>%s</td>' % (key[x][0]))
-		print('								<td style="text-align: right">%.0f%s</td>' % (ingredient[x + 1], key[x][1]))
+
+		if x < 11:
+			print('								<td>%s</td>' % (key[x][0]))
+			print('								<td style="text-align: right">%.1f%s</td>' % (ingredient[x + 1], key[x][1]))
+		else:
+			print('								<td></td>')
+			print('								<td></td>')
+
+		print('								<td></td>')
+
+		if x < 12:
+			print('								<td>%s</td>' % (key[x + 11][0]))
+			print('								<td style="text-align: right">%.1f%s</td>' % (ingredient[x + 12], key[x + 11][1]))
+		else:
+			print('								<td></td>')
+			print('								<td></td>')
+
+		print('								<td></td>')
+		print('								<td>%s</td>' % (key[x + 24][0]))
+		print('								<td style="text-align: right">%.1f%s</td>' % (ingredient[x + 25], key[x + 24][1]))
 		print('							</tr>')
 
 	print('						</tbody>')
