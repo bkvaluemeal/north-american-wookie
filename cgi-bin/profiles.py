@@ -1,8 +1,22 @@
 #!/usr/bin/env python
+from lib import label
 import sqlite3
 
 conn = sqlite3.connect('database.db')
 c = conn.cursor()
+profiles = ()
+key = (('Calories', ''), ('Carbs', 'g'), ('Fiber', 'g'), ('Protein', 'g'),
+	('Total Fat', 'g'), ('Saturated Fat', 'g'), ('Monounsaturated Fat', 'g'),
+	('Polyunsaturated Fat', 'g'), ('Omega 3', 'g'), ('Omega 6', 'g'),
+	('Cholesterol', 'mg'), ('Vitamin A', ' IU'), ('Vitamin C', 'mg'),
+	('Vitamin D', ' IU'), ('Vitamin E', ' IU'), ('Vitamin K', 'mcg'),
+	('Thiamin', 'mg'), ('Riboflavin', 'mg'), ('Niacin', 'mg'), ('Vitamin B6', 'mg'),
+	('Folate', 'mcg'), ('Vitamin B12', 'mcg'), ('Biotin', 'mcg'),
+	('Pantothenic Acid', 'mg'), ('Calcium', 'mg'), ('Iron', 'mg'), ('Phosphorus', 'mg'),
+	('Iodine', 'mcg'), ('Magnesium', 'mg'), ('Zinc', 'mg'), ('Selenium', 'mcg'),
+	('Copper', 'mg'), ('Manganese', 'mg'), ('Chromium', 'mcg'),
+	('Molybdenum', 'mcg'), ('Chloride', 'mg'), ('Potassium', 'mg'),
+	('Choline', 'mg'), ('Sodium', 'mg'))
 
 print('Content-type: text/html')
 print()
@@ -30,12 +44,48 @@ print('		</thead>')
 print('		<tbody>')
 
 for row in c.execute('SELECT * FROM profiles'):
-	print('			<tr>')
+	print('			<tr data-toggle="modal" data-target="#%s">' % (row[0].lower().replace(' ', '-')))
 	print('				<td>%s</td>' % (row[0]))
 	print('			</tr>')
+	profiles += ((row),)
 
 print('		</tbody>')
 print('	</table>')
+
+for profile in profiles:
+	print('	<div class="modal fade" id="%s" role="dialog">' % (profile[0].lower().replace(' ', '-')))
+	print('		<div class="modal-dialog modal-sm">')
+	print('			<div class="modal-content">')
+	print('				<div class="modal-header">')
+	print('					<button type="button" class="close" data-dismiss="modal">&times;</button>')
+	print('					<h4 class="modal-title">%s</h4>' % (profile[0]))
+	print('				</div>')
+	print('				<div class="modal-body">')
+	print('					<table class="table">')
+	print('						<thead>')
+	print('							<tr>')
+	print('								<th>Nutrient</th>')
+	print('								<th style="text-align: right">Amount</th>')
+	print('							</tr>')
+	print('						</thead>')
+	print('						<tbody>')
+
+	for x in range(39):
+		print('							<tr>')
+		print('								<td>%s</td>' % (key[x][0]))
+		print('								<td style="text-align: right">%.0f%s</td>' % (profile[x + 1], key[x][1]))
+		print('							</tr>')
+
+	print('						</tbody>')
+	print('					</table>')
+	print('				</div>')
+	print('				<div class="modal-footer">')
+	print('					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>')
+	print('				</div>')
+	print('			</div>')
+	print('		</div>')
+	print('	</div>')
+
 print('	<div class="row">')
 print('		<footer style="text-align: center">')
 print('			<p>Copyright 2015 Justin Willis</p>')
