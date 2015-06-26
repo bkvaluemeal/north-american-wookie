@@ -7,7 +7,7 @@ c = conn.cursor()
 
 class Recipe:
 	def __init__(self):
-		self.stat = [0 for x in range(45)]
+		self.stat = [0 for x in range(39)]
 		self.recipe = ()
 		self.price = 0
 
@@ -19,7 +19,7 @@ class Recipe:
 
 			self.recipe += ((ingredient[0], x, ingredient[2]),)
 
-			for y in range(45):
+			for y in range(39):
 				self.stat[y] += ingredient[6:][y] * x / 100
 
 			self.price += (x / ingredient[1]) * ingredient[3]
@@ -39,13 +39,13 @@ class Recipe:
 			return result
 
 	def getPrice(self):
-		return round(self.price, 2)
+		return self.price
 
 	def getPercent(self):
 		return 0
 
 	def mutate(self):
-		self.stat = [0 for x in range(45)]
+		self.stat = [0 for x in range(39)]
 		result = ()
 		self.price = 0
 
@@ -58,43 +58,36 @@ class Recipe:
 			for ingredient in c.execute('SELECT * FROM ingredients WHERE name = ?', (item[0],)):
 				result += ((ingredient[0], x, ingredient[2]),)
 
-				for y in range(45):
+				for y in range(39):
 					self.stat[y] += ingredient[6:][y] * x / 100
 
 				self.price += (x / ingredient[1]) * ingredient[3]
 
 		self.recipe = result
 
-recipes = (Recipe() for x in range(100))
-most_fit = None
+class Wookie:
+	def __init__(self):
+		recipes = (Recipe() for x in range(100))
+		self.most_fit = None
 
-for x in recipes:
-	print('[0] ' + str(x.getPercent()))
+		for x in recipes:
+			if self.most_fit == None or (x.getPercent() < self.most_fit.getPercent() and x.getPercent() >= 0):
+				self.most_fit = x
 
-	if most_fit == None or (x.getPercent() < most_fit.getPercent() and x.getPercent() >= 0):
-		most_fit = x
+		for gen in range(1, 101):
+			recipes = []
+			for x in range(100):
+				temp = copy.copy(self.most_fit)
+				temp.mutate()
+				recipes.append(temp)
 
-for gen in range(1, 101):
-	recipes = []
-	for x in range(100):
-		temp = copy.copy(most_fit)
-		temp.mutate()
-		recipes.append(temp)
+			best = None
 
-	best = None
+			for x in recipes:
+				if best == None or (x.getPercent() < best.getPercent() and x.getPercent() >= 0):
+					best = x
 
-	for x in recipes:
-		print('[' + str(gen) + '] ' + str(x.getPercent()))
+			self.most_fit = best
 
-		if best == None or (x.getPercent() < best.getPercent() and x.getPercent() >= 0):
-			best = x
-
-	most_fit = best
-
-print()
-print('[Result] ' + str(most_fit.getPercent()))
-print()
-for x in most_fit.getRecipe():
-	print(x)
-print()
-print('$' + str(most_fit.getPrice()))
+	def getBest(self):
+		return self.most_fit

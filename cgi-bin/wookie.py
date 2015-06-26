@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+from lib.wookie import Wookie
 import sqlite3
 import cgi
 
@@ -51,20 +52,24 @@ if 'profile' not in form:
 	print('		</table>')
 	print('	</form>')
 else:
+	result = Wookie().getBest()
+
 	print('	<table class="table">')
 	print('		<thead>')
 	print('			<tr>')
-	print('				<th>Ingredient</th>')
-	print('				<th>Amount</th>')
+	print('				<th>Recipe</th>')
 	print('			</tr>')
 	print('		</thead>')
 	print('		<tbody>')
-	print('			<tr>')
-	print('				<td>Recipe should go here</td>')
-	print('				<td>Profile: %s</td>' % (form.getvalue('profile')))
-	print('			</tr>')
+
+	for item in result.getRecipe():
+		print('			<tr>')
+		print('				<td>%s</td>' % (item))
+		print('			</tr>')
+
 	print('		</tbody>')
 	print('	</table>')
+	print('	<h2 style="text-align: center; padding: 1em">$%.2f per day</h2>' % (result.getPrice()))
 
 print('	<div class="row">')
 print('		<footer style="text-align: center">')
