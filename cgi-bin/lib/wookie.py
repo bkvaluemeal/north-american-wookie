@@ -6,7 +6,8 @@ conn = sqlite3.connect('database.db')
 c = conn.cursor()
 
 class Recipe:
-	def __init__(self):
+	def __init__(self, profile):
+		self.profile = profile
 		self.stat = [0 for x in range(39)]
 		self.recipe = ()
 		self.price = 0
@@ -42,7 +43,18 @@ class Recipe:
 		return self.price
 
 	def getPercent(self):
-		return 0
+		result = 0
+
+		for row in c.execute('SELECT * FROM profiles WHERE name = "%s"' % (self.profile)):
+			row = row[1:]
+
+			for x in range(39):
+				if row[x] == 0:
+					continue
+				else:
+					result += abs(self.stat[x] - row[x]) / row[x] * 100
+
+		return result / 39
 
 	def mutate(self):
 		self.stat = [0 for x in range(39)]
@@ -66,8 +78,8 @@ class Recipe:
 		self.recipe = result
 
 class Wookie:
-	def __init__(self):
-		recipes = (Recipe() for x in range(100))
+	def __init__(self, profile):
+		recipes = (Recipe(profile) for x in range(100))
 		self.most_fit = None
 
 		for x in recipes:

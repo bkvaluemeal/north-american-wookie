@@ -6,6 +6,18 @@ import cgi
 form = cgi.FieldStorage()
 conn = sqlite3.connect('database.db')
 c = conn.cursor()
+key = (('Calories', ''), ('Carbs', 'g'), ('Fiber', 'g'), ('Protein', 'g'),
+	('Total Fat', 'g'), ('Saturated Fat', 'g'), ('Monounsaturated Fat', 'g'),
+	('Polyunsaturated Fat', 'g'), ('Omega 3', 'g'), ('Omega 6', 'g'),
+	('Cholesterol', 'mg'), ('Vitamin A', ' IU'), ('Vitamin C', 'mg'),
+	('Vitamin D', ' IU'), ('Vitamin E', ' IU'), ('Vitamin K', 'mcg'),
+	('Thiamin', 'mg'), ('Riboflavin', 'mg'), ('Niacin', 'mg'), ('Vitamin B6', 'mg'),
+	('Folate', 'mcg'), ('Vitamin B12', 'mcg'), ('Biotin', 'mcg'),
+	('Pantothenic Acid', 'mg'), ('Calcium', 'mg'), ('Iron', 'mg'), ('Phosphorus', 'mg'),
+	('Iodine', 'mcg'), ('Magnesium', 'mg'), ('Zinc', 'mg'), ('Selenium', 'mcg'),
+	('Copper', 'mg'), ('Manganese', 'mg'), ('Chromium', 'mcg'),
+	('Molybdenum', 'mcg'), ('Chloride', 'mg'), ('Potassium', 'mg'),
+	('Choline', 'mg'), ('Sodium', 'mg'))
 
 print('Content-type: text/html')
 print()
@@ -24,52 +36,72 @@ print('<div class="container">')
 print('	<div class="jumbotron">')
 print('		<h1>Wookie</h1>')
 print('	</div>')
+print('	<form action="/cgi-bin/wookie.py" method="POST">')
+print('		<table class="table">')
+print('			<thead>')
+print('				<tr>')
+print('					<th>Profile</th>')
+print('				</tr>')
+print('			</thead>')
+print('			<tbody>')
+print('				<tr>')
+print('					<td>')
+print('						<select name="profile">')
 
-if 'profile' not in form:
-	print('	<form action="/cgi-bin/wookie.py" method="POST">')
+for row in c.execute('SELECT name FROM profiles'):
+	print('							<option value="%s">%s</option>' % (row[0], row[0]))
+
+print('						</select>')
+print('					</td>')
+print('				</tr>')
+print('				<tr>')
+print('					<td style="text-align: center"><input type="submit" value="Submit"></td>')
+print('				</tr>')
+print('			</tbody>')
+print('		</table>')
+print('	</form>')
+
+if 'profile' in form:
+	result = Wookie(form.getvalue('profile')).getBest()
+
+	print('	<div style="float: left; width: 60%">')
 	print('		<table class="table">')
+	print('			<thead>')
+	print('				<tr>')
+	print('					<th>Recipe</th>')
+	print('				</tr>')
+	print('			</thead>')
 	print('			<tbody>')
-	print('				<tr>')
-	print('					<td>Profile</td>')
-	print('					<td>')
-	print('						<select name="profile">')
-
-	for row in c.execute('SELECT name FROM profiles'):
-		print('							<option value="%s">%s</option>' % (row[0], row[0]))
-
-	print('						</select>')
-	print('					</td>')
-	print('					<td>')
-	print('						<p>Choose a profile</p>')
-	print('					</td>')
-	print('				</tr>')
-	print('				<tr>')
-	print('					<td></td>')
-	print('					<td><input type="submit" value="Submit"></td>')
-	print('					<td></td>')
-	print('				</tr>')
-	print('			</tbody>')
-	print('		</table>')
-	print('	</form>')
-else:
-	result = Wookie().getBest()
-
-	print('	<table class="table">')
-	print('		<thead>')
-	print('			<tr>')
-	print('				<th>Recipe</th>')
-	print('			</tr>')
-	print('		</thead>')
-	print('		<tbody>')
 
 	for item in result.getRecipe():
-		print('			<tr>')
-		print('				<td>%s</td>' % (item))
-		print('			</tr>')
+		print('				<tr>')
+		print('					<td>%s</td>' % (item))
+		print('				</tr>')
 
-	print('		</tbody>')
-	print('	</table>')
-	print('	<h2 style="text-align: center; padding: 1em">$%.2f per day</h2>' % (result.getPrice()))
+	print('			</tbody>')
+	print('		</table>')
+	print('	</div>')
+	print('	<div style="float: right; width: 35%">')
+	print('		<table class="table">')
+	print('			<thead>')
+	print('				<tr>')
+	print('					<th>Nutrition Facts</th>')
+	print('				</tr>')
+	print('			</thead>')
+	print('			<tbody>')
+
+	stats = result.getStats()
+	for x in range(39):
+		print('				<tr>')
+		print('					<td>%s</td>' % (key[x][0]))
+		print('					<td style="text-align: right">%.2f%s</td>' % (stats[x], key[x][1]))
+		print('				</tr>')
+
+	print('			</tbody>')
+	print('		</table>')
+	print('	</div>')
+	print('	<h2 style="text-align: center; padding-top: 1em; clear: both">%.2f%% different</h2>' % (result.getPercent()))
+	print('	<h2 style="text-align: center; padding-bottom: 1em">$%.2f per day</h2>' % (result.getPrice()))
 
 print('	<div class="row">')
 print('		<footer style="text-align: center">')
