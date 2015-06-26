@@ -78,17 +78,17 @@ class Recipe:
 		self.recipe = result
 
 class Wookie:
-	def __init__(self, profile):
-		recipes = (Recipe(profile) for x in range(100))
+	def __init__(self, profile, size, generations):
+		recipes = (Recipe(profile) for x in range(size))
 		self.most_fit = None
 
 		for x in recipes:
 			if self.most_fit == None or (x.getPercent() < self.most_fit.getPercent() and x.getPercent() >= 0):
 				self.most_fit = x
 
-		for gen in range(1, 101):
+		for gen in range(1, generations + 1):
 			recipes = []
-			for x in range(100):
+			for x in range(size):
 				temp = copy.copy(self.most_fit)
 				temp.mutate()
 				recipes.append(temp)
