@@ -44,6 +44,22 @@ def doForm():
 			c.execute("DELETE FROM profiles WHERE name = '%s'" % (form.getvalue('name')))
 
 			conn.commit()
+		elif action == 'edit':
+			try:
+				stats += (form.getvalue('name'),)
+			except:
+				return 1
+
+			for stat in key:
+				try:
+					stats += (float(form.getvalue(stat[0].lower().replace(' ', '-'))),)
+				except:
+					stats += (0,)
+
+			c.execute("DELETE FROM profiles WHERE name = '%s'" % (form.getvalue('original')))
+			c.execute("INSERT INTO profiles VALUES ('%s', %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f)" % stats)
+
+			conn.commit()
 
 	return 0
 
@@ -154,6 +170,70 @@ print('		</div>')
 print('	</form>')
 
 for profile in profiles:
+	print('	<form action="/cgi-bin/profiles.py" method="POST">')
+	print('		<input type="hidden" name="action" value="edit">')
+	print('		<input type="hidden" name="original" value="%s">' % (profile[0]))
+	print('		<div id="%s-edit" class="modal fade" role="dialog">' % (profile[0].lower().replace(' ', '-')))
+	print('			<div class="modal-dialog" style="width: 90%">')
+	print('				<div class="modal-content">')
+	print('					<div class="modal-header">')
+	print('						<button type="button" class="close" data-dismiss="modal">&times;</button>')
+	print('						<h4 class="modal-title"><input type="text" name="name" value="%s" tabindex=1></h4>' % (profile[0]))
+	print('					</div>')
+	print('					<div class="modal-body">')
+	print('						<table class="table">')
+	print('							<thead>')
+	print('								<tr>')
+	print('									<th>Macro Nutrients</th>')
+	print('									<th style="text-align: right">Amount</th>')
+	print('									<th></th>')
+	print('									<th>Vitamins</th>')
+	print('									<th style="text-align: right">Amount</th>')
+	print('									<th></th>')
+	print('									<th>Minerals</th>')
+	print('									<th style="text-align: right">Amount</th>')
+	print('									<th></th>')
+	print('								</tr>')
+	print('							</thead>')
+	print('							<tbody>')
+
+	for x in range(15):
+		print('								<tr>')
+
+		if x < 11:
+			print('									<td>%s</td>' % (key[x][0]))
+			print('									<td style="text-align: right"><input type="text" name="%s" size="5" value="%.1f" tabindex=%i></td>' % (key[x][0].lower().replace(' ', '-'), profile[x + 1], x + 7))
+			print('									<td style="text-align: left">%s</td>' % (key[x][1]))
+		else:
+			print('									<td></td>')
+			print('									<td></td>')
+			print('									<td></td>')
+
+		if x < 12:
+			print('									<td>%s</td>' % (key[x + 11][0]))
+			print('									<td style="text-align: right"><input type="text" name="%s" size="5" value="%.1f" tabindex=%i></td>' % (key[x + 11][0].lower().replace(' ', '-'), profile[x + 12], x + 18))
+			print('									<td style="text-align: left">%s</td>' % (key[x + 11][1]))
+		else:
+			print('									<td></td>')
+			print('									<td></td>')
+			print('									<td></td>')
+
+		print('									<td>%s</td>' % (key[x + 24][0]))
+		print('									<td style="text-align: right"><input type="text" name="%s" size="5" value="%.1f" tabindex=%i></td>' % (key[x + 24][0].lower().replace(' ', '-'), profile[x + 25], x + 31))
+		print('									<td style="text-align: left">%s</td>' % (key[x + 24][1]))
+		print('								</tr>')
+
+	print('							</tbody>')
+	print('						</table>')
+	print('					</div>')
+	print('					<div class="modal-footer">')
+	print('						<input type="submit" class="btn btn-primary" value="Submit" tabindex=46>')
+	print('						<button type="button" class="btn btn-default" data-dismiss="modal" tabindex=47>Close</button>')
+	print('					</div>')
+	print('				</div>')
+	print('			</div>')
+	print('		</div>')
+	print('	</form>')
 	print('	<div class="modal fade" id="%s" role="dialog">' % (profile[0].lower().replace(' ', '-')))
 	print('		<div class="modal-dialog" style="width: 90%">')
 	print('			<div class="modal-content">')
@@ -206,6 +286,7 @@ for profile in profiles:
 	print('				</div>')
 	print('				<form action="/cgi-bin/profiles.py" method="POST">')
 	print('					<div class="modal-footer">')
+	print('						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#%s-edit" data-dismiss="modal">Edit</button>' % (profile[0].lower().replace(' ', '-')))
 	print('						<input type="hidden" name="action" value="delete">')
 	print('						<input type="hidden" name="name" value="%s">' % (profile[0]))
 	print('						<input type="submit" class="btn btn-danger" value="Delete">')

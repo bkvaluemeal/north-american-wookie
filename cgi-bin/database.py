@@ -48,6 +48,27 @@ def doForm():
 			c.execute("DELETE FROM ingredients WHERE name = '%s'" % (form.getvalue('name')))
 
 			conn.commit()
+		elif action == 'edit':
+			try:
+				stats += (form.getvalue('name'),)
+				stats += (float(form.getvalue('size')),)
+				stats += (form.getvalue('unit'),)
+				stats += (float(form.getvalue('price')),)
+				stats += (form.getvalue('link'),)
+				stats += (form.getvalue('source'),)
+			except:
+				return 1
+
+			for stat in key:
+				try:
+					stats += (float(form.getvalue(stat[0].lower().replace(' ', '-'))),)
+				except:
+					stats += (0,)
+
+			c.execute("DELETE FROM ingredients WHERE name = '%s'" % (form.getvalue('original')))
+			c.execute("INSERT INTO ingredients VALUES ('%s', %f, '%s', %f, '%s', '%s', %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f)" % stats)
+
+			conn.commit()
 
 	return 0
 
@@ -95,7 +116,7 @@ for row in c.execute('SELECT * FROM ingredients'):
 	print('				<td>$%.2f</td>' % (row[3]))
 	print('				<td><a href="%s">%s</a></td>' % (row[4], row[5]))
 	print('			</tr>')
-	ingredients += ((row[0],) + (row[6:]),)
+	ingredients += (row,)
 
 print('		</tbody>')
 print('	</table>')
@@ -188,6 +209,103 @@ print('		</div>')
 print('	</form>')
 
 for ingredient in ingredients:
+	print('	<form action="/cgi-bin/database.py" method="POST">')
+	print('		<input type="hidden" name="action" value="edit">')
+	print('		<input type="hidden" name="original" value="%s">' % (ingredient[0]))
+	print('		<div id="%s-edit" class="modal fade" role="dialog">' % (ingredient[0].lower().replace(' ', '-')))
+	print('			<div class="modal-dialog" style="width: 90%">')
+	print('				<div class="modal-content">')
+	print('					<div class="modal-header">')
+	print('						<button type="button" class="close" data-dismiss="modal">&times;</button>')
+	print('						<h4 class="modal-title"><input type="text" name="name" value="%s" tabindex=1></h4>' % (ingredient[0]))
+	print('					</div>')
+	print('					<div class="modal-body">')
+	print('						<table width="100%">')
+	print('							<tr>')
+	print('								<td style="white-space: nowrap; padding: 8px">')
+	print('									<span>Size:</span>')
+	print('									<input type="text" name="size" size="5" value="%.0f" tabindex=2>' % (ingredient[1]))
+	print('									<select name="unit" selected="selected" tabindex=3>')
+
+	if ingredient[2] == 'g':
+		print('										<option value="g" selected>g</option>')
+	else:
+		print('										<option value="g">g</option>')
+
+	if ingredient[2] == 'ml':
+		print('										<option value="ml" selected>ml</option>')
+	else:
+		print('										<option value="ml">ml</option>')
+
+	print('									</select>')
+	print('								</td>')
+	print('								<td style="white-space: nowrap; padding: 8px">')
+	print('									<span>Price: $</span>')
+	print('									<input type="text" name="price" size="5" value="%.2f" tabindex=4>' % (ingredient[3]))
+	print('								</td>')
+	print('								<td style="white-space: nowrap; padding: 8px">')
+	print('									<span>Link:</span>')
+	print('									<input type="text" name="link" size="100%%" value="%s" tabindex=5>' % (ingredient[4]))
+	print('								</td>')
+	print('								<td style="white-space: nowrap; padding: 8px">')
+	print('									<span>Source:</span>')
+	print('									<input type="text" name="source" size="100%%" value="%s" tabindex=6>' % (ingredient[5]))
+	print('								</td>')
+	print('							</tr>')
+	print('						</table>')
+	print('						<table class="table">')
+	print('							<thead>')
+	print('								<tr>')
+	print('									<th>Macro Nutrients</th>')
+	print('									<th style="text-align: right">Amount</th>')
+	print('									<th></th>')
+	print('									<th>Vitamins</th>')
+	print('									<th style="text-align: right">Amount</th>')
+	print('									<th></th>')
+	print('									<th>Minerals</th>')
+	print('									<th style="text-align: right">Amount</th>')
+	print('									<th></th>')
+	print('								</tr>')
+	print('							</thead>')
+	print('							<tbody>')
+
+	for x in range(15):
+		print('								<tr>')
+
+		if x < 11:
+			print('									<td>%s</td>' % (key[x][0]))
+			print('									<td style="text-align: right"><input type="text" name="%s" size="5" value="%.1f" tabindex=%i></td>' % (key[x][0].lower().replace(' ', '-'), ingredient[x + 6], x + 7))
+			print('									<td style="text-align: left">%s</td>' % (key[x][1]))
+		else:
+			print('									<td></td>')
+			print('									<td></td>')
+			print('									<td></td>')
+
+		if x < 12:
+			print('									<td>%s</td>' % (key[x + 11][0]))
+			print('									<td style="text-align: right"><input type="text" name="%s" size="5" value="%.1f" tabindex=%i></td>' % (key[x + 11][0].lower().replace(' ', '-'), ingredient[x + 17], x + 18))
+			print('									<td style="text-align: left">%s</td>' % (key[x + 11][1]))
+		else:
+			print('									<td></td>')
+			print('									<td></td>')
+			print('									<td></td>')
+
+		print('									<td>%s</td>' % (key[x + 24][0]))
+		print('									<td style="text-align: right"><input type="text" name="%s" size="5" value="%.1f" tabindex=%i></td>' % (key[x + 24][0].lower().replace(' ', '-'), ingredient[x + 30], x + 31))
+		print('									<td style="text-align: left">%s</td>' % (key[x + 24][1]))
+		print('								</tr>')
+
+	print('							</tbody>')
+	print('						</table>')
+	print('					</div>')
+	print('					<div class="modal-footer">')
+	print('						<input type="submit" class="btn btn-primary" value="Submit" tabindex=46>')
+	print('						<button type="button" class="btn btn-default" data-dismiss="modal" tabindex=47>Close</button>')
+	print('					</div>')
+	print('				</div>')
+	print('			</div>')
+	print('		</div>')
+	print('	</form>')
 	print('	<div class="modal fade" id="%s" role="dialog">' % (ingredient[0].lower().replace(' ', '-')))
 	print('		<div class="modal-dialog" style="width: 90%">')
 	print('			<div class="modal-content">')
@@ -216,7 +334,7 @@ for ingredient in ingredients:
 
 		if x < 11:
 			print('								<td>%s</td>' % (key[x][0]))
-			print('								<td style="text-align: right">%.1f%s</td>' % (ingredient[x + 1], key[x][1]))
+			print('								<td style="text-align: right">%.1f%s</td>' % (ingredient[x + 6], key[x][1]))
 		else:
 			print('								<td></td>')
 			print('								<td></td>')
@@ -225,14 +343,14 @@ for ingredient in ingredients:
 
 		if x < 12:
 			print('								<td>%s</td>' % (key[x + 11][0]))
-			print('								<td style="text-align: right">%.1f%s</td>' % (ingredient[x + 12], key[x + 11][1]))
+			print('								<td style="text-align: right">%.1f%s</td>' % (ingredient[x + 17], key[x + 11][1]))
 		else:
 			print('								<td></td>')
 			print('								<td></td>')
 
 		print('								<td></td>')
 		print('								<td>%s</td>' % (key[x + 24][0]))
-		print('								<td style="text-align: right">%.1f%s</td>' % (ingredient[x + 25], key[x + 24][1]))
+		print('								<td style="text-align: right">%.1f%s</td>' % (ingredient[x + 30], key[x + 24][1]))
 		print('							</tr>')
 
 	print('						</tbody>')
@@ -240,6 +358,7 @@ for ingredient in ingredients:
 	print('				</div>')
 	print('				<form action="/cgi-bin/database.py" method="POST">')
 	print('					<div class="modal-footer">')
+	print('						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#%s-edit" data-dismiss="modal">Edit</button>' % (ingredient[0].lower().replace(' ', '-')))
 	print('						<input type="hidden" name="action" value="delete">')
 	print('						<input type="hidden" name="name" value="%s">' % (ingredient[0]))
 	print('						<input type="submit" class="btn btn-danger" value="Delete">')
