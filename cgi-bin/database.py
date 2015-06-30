@@ -24,26 +24,30 @@ def doForm():
 		action = form.getvalue('action')
 		stats = ()
 
-		try:
-			stats += (form.getvalue('name'),)
-			stats += (float(form.getvalue('size')),)
-			stats += (form.getvalue('unit'),)
-			stats += (float(form.getvalue('price')),)
-			stats += (form.getvalue('link'),)
-			stats += (form.getvalue('source'),)
-		except:
-			return 1
-
-		for stat in key:
-			try:
-				stats += (float(form.getvalue(stat[0].lower().replace(' ', '-'))),)
-			except:
-				stats += (0,)
-
 		if action == 'add':
+			try:
+				stats += (form.getvalue('name'),)
+				stats += (float(form.getvalue('size')),)
+				stats += (form.getvalue('unit'),)
+				stats += (float(form.getvalue('price')),)
+				stats += (form.getvalue('link'),)
+				stats += (form.getvalue('source'),)
+			except:
+				return 1
+
+			for stat in key:
+				try:
+					stats += (float(form.getvalue(stat[0].lower().replace(' ', '-'))),)
+				except:
+					stats += (0,)
+
 			c.execute("INSERT INTO ingredients VALUES ('%s', %f, '%s', %f, '%s', '%s', %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f)" % stats)
 
-		conn.commit()
+			conn.commit()
+		elif action == 'delete':
+			c.execute("DELETE FROM ingredients WHERE name = '%s'" % (form.getvalue('name')))
+
+			conn.commit()
 
 	return 0
 
@@ -234,9 +238,14 @@ for ingredient in ingredients:
 	print('						</tbody>')
 	print('					</table>')
 	print('				</div>')
-	print('				<div class="modal-footer">')
-	print('					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>')
-	print('				</div>')
+	print('				<form action="/cgi-bin/database.py" method="POST">')
+	print('					<div class="modal-footer">')
+	print('						<input type="hidden" name="action" value="delete">')
+	print('						<input type="hidden" name="name" value="%s">' % (ingredient[0]))
+	print('						<input type="submit" class="btn btn-danger" value="Delete">')
+	print('						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>')
+	print('					</div>')
+	print('				</form>')
 	print('			</div>')
 	print('		</div>')
 	print('	</div>')
