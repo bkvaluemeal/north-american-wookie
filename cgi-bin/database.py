@@ -41,7 +41,10 @@ def doForm():
 				except:
 					stats += (0,)
 
-			c.execute("INSERT INTO ingredients VALUES ('%s', %f, '%s', %f, '%s', '%s', %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f)" % stats)
+			try:
+				c.execute("INSERT INTO ingredients VALUES ('%s', %f, '%s', %f, '%s', '%s', %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f)" % stats)
+			except:
+				return 2
 
 			conn.commit()
 		elif action == 'delete':
@@ -74,6 +77,7 @@ def doForm():
 
 # 0: No error
 # 1: Missing form data
+# 2: Duplicate entry
 error = doForm()
 
 print('Content-type: text/html')
@@ -96,6 +100,8 @@ print('	</div>')
 
 if error == 1:
 	print('	<h2 style="color: red; text-align: center">Missing form data</h2>')
+if error == 2:
+	print('	<h2 style="color: red; text-align: center">Duplicate entry</h2>')
 
 print('	<button type="button" class="btn btn-sm btn-success" style="margin-bottom: 2em" data-toggle="modal" data-target="#add">Add</button>')
 print('	<table class="table table-hover">')
