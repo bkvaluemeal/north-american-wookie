@@ -86,6 +86,10 @@ print('<body>')
 print('<div class="container">')
 print('	<div class="jumbotron">')
 print('		<h1>Profiles</h1>')
+print('		<a href="/" class="btn btn-default btn-sm">')
+print('			<span class="glyphicon glyphicon-home"></span>')
+print('			<span>Home</span>')
+print('		</a>')
 print('	</div>')
 
 if error == 1:
