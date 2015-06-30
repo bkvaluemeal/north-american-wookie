@@ -148,6 +148,7 @@ print('									<input type="text" name="size" size="5" tabindex=2>')
 print('									<select name="unit" tabindex=3>')
 print('										<option value="g">g</option>')
 print('										<option value="ml">ml</option>')
+print('										<option value="pill">pill</option>')
 print('									</select>')
 print('								</td>')
 print('								<td style="white-space: nowrap; padding: 8px">')
@@ -208,6 +209,7 @@ for x in range(15):
 
 print('							</tbody>')
 print('						</table>')
+print('						<p style="text-align: right">*Values based on units of 100</p>')
 print('					</div>')
 print('					<div class="modal-footer">')
 print('						<input type="submit" class="btn btn-primary" value="Submit" tabindex=46>')
@@ -246,6 +248,11 @@ for ingredient in ingredients:
 		print('										<option value="ml" selected>ml</option>')
 	else:
 		print('										<option value="ml">ml</option>')
+
+	if ingredient[2] == 'pill':
+		print('										<option value="pill" selected>pill</option>')
+	else:
+		print('										<option value="pill">pill</option>')
 
 	print('									</select>')
 	print('								</td>')
@@ -307,6 +314,7 @@ for ingredient in ingredients:
 
 	print('							</tbody>')
 	print('						</table>')
+	print('						<p style="text-align: right">*Values based on units of 100</p>')
 	print('					</div>')
 	print('					<div class="modal-footer">')
 	print('						<input type="submit" class="btn btn-primary" value="Submit" tabindex=46>')
@@ -365,6 +373,7 @@ for ingredient in ingredients:
 
 	print('						</tbody>')
 	print('					</table>')
+	print('					<p style="text-align: right">*Values based on units of 100</p>')
 	print('				</div>')
 	print('				<form action="/cgi-bin/database.py" method="POST">')
 	print('					<div class="modal-footer">')
