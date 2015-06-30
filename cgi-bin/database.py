@@ -193,7 +193,7 @@ for x in range(15):
 		print('									<td></td>')
 		print('									<td></td>')
 
-	if x < 12:
+	if x < 13:
 		print('									<td>%s</td>' % (key[x + 11][0]))
 		print('									<td style="text-align: right"><input type="text" name="%s" size="5" tabindex=%i></td>' % (key[x + 11][0].lower().replace(' ', '-'), x + 18))
 		print('									<td style="text-align: left">%s</td>' % (key[x + 11][1]))
@@ -298,7 +298,7 @@ for ingredient in ingredients:
 			print('									<td></td>')
 			print('									<td></td>')
 
-		if x < 12:
+		if x < 13:
 			print('									<td>%s</td>' % (key[x + 11][0]))
 			print('									<td style="text-align: right"><input type="text" name="%s" size="5" value="%.1f" tabindex=%i></td>' % (key[x + 11][0].lower().replace(' ', '-'), ingredient[x + 17], x + 18))
 			print('									<td style="text-align: left">%s</td>' % (key[x + 11][1]))
@@ -359,7 +359,7 @@ for ingredient in ingredients:
 
 		print('								<td></td>')
 
-		if x < 12:
+		if x < 13:
 			print('								<td>%s</td>' % (key[x + 11][0]))
 			print('								<td style="text-align: right">%.1f%s</td>' % (ingredient[x + 17], key[x + 11][1]))
 		else:
